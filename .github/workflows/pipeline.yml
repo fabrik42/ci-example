@@ -19,13 +19,14 @@ jobs:
     - run: node test.js
 
   build:
-    name: Build the new Calculator version
+    name: Build new Calculator version
     needs: test
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - run: echo time
+    - run: chmod +x ./build.sh
+    - run: ./build.sh
 
   release:
     name: Release the Calculator build
@@ -34,4 +35,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: echo time
+    - run: echo "Hello"
+    - run: cat build/index.html
