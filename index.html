@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="calculator.js"></script>
+    <script>
+     function calculate() {
+       var a = parseInt(document.getElementById('a').value);
+       var b = parseInt(document.getElementById('b').value);
+       var result = document.getElementById('result');
+
+       result.innerText = add(a, b);
+     }
+    </script>
+  </head>
+  <body>
+    <p>
+      <input id="a" value="0" /> +
+      <input id="b" value="0" /> =
+      <span id="result">?</span>
+    </p>
+
+    <p>
+      <button onclick="calculate()">Calculate</button>
+    </p>
+    <p>
+      Build version
+    </p>
+  </body>
+</html>
