@@ -8,27 +8,30 @@ on:
 
 jobs:
   test:
+    name: Run Calculator Tests
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run Calculator Tests
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v2
       with:
         node-version: 12.x
     - run: node test.js
 
   build:
+    name: Build the new Calculator version
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the final Calculator
-      run: echo time
+    - run: echo time
+
   release:
+    name: Release the Calculator build
+    needs: [test, build]
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Release the newest Calculator build
-      run: echo time
+    - run: echo time
