@@ -3,7 +3,7 @@
 require 'fileutils'
 require 'date'
 
-destination_directory = 'build'
+destination_directory = 'dist'
 
 [
   'calculator.js'
