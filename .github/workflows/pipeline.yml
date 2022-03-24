@@ -41,17 +41,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Download a single artifact
-      id: download
       uses: actions/download-artifact@v3
       with:
         name: dist-build
         path: ./dist
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: ./dist
-    - name: 'Echo download path'
-      run: echo ${{steps.download.outputs.download-path}}
-    - run: cat dist/index.html
     - name: Deploy to netlify
       uses: netlify/actions/cli@master
       env:
@@ -59,4 +52,3 @@ jobs:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
         args: deploy --dir=dist --prod
-        secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
