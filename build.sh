@@ -1,12 +1,21 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
 require 'date'
 
+destination_directory = 'build'
+
+[
+  'calculator.js'
+].each do |filename|
+  FileUtils.cp(filename, destination_directory)
+end
+
 version_info = [
-    DateTime.now.to_s,
-    `git rev-parse --short HEAD`
+  DateTime.now.to_s,
+  `git rev-parse --short HEAD`
 ].join('@')
 
 content = File.read('index.html')
 content.gsub!('{{version_info}}', version_info)
-File.write('build/index.html', content)
+File.write("#{destination_directory}/index.html", content)
