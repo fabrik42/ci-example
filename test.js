@@ -3,7 +3,7 @@ var add = require('./calculator').add;
 function assertEqual(expected, actual) {
   if (expected !== actual) {
     console.error(`❌ Failed: Expected ${expected} to be ${actual}`);
-    process.exit(0);
+    process.exit(1);
   } else {
     console.info(`✅ Passed: Expected ${expected} === ${actual}`);
   }
@@ -24,7 +24,7 @@ assertEqual(add(1, null), 1);
 assertEqual(add(null, 1), 1);
 
 // let it fail
-// assertEqual(1, 2);
+assertEqual(1, 2);
 
 // does not work with non-decimal values
 // assertEqual(add(1, 'A'), NaN);
