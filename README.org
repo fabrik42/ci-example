@@ -1,0 +1,27 @@
+* CI Pipelines by Example
+#+begin_src mermaid :file pipeline.png
+graph TD
+    S[Developer] -->|code change| A[Test suite]
+    A -->|all tests pass| B[Build]
+    A -->|tests fail| F(abort pipeline)
+    B -->|build dist version| C[Deploy]
+    B -->|build fails| F
+    C -->|deploy new version| D[New version online]
+    C -->|deploy fails| F
+#+end_src
+
+#+RESULTS:
+[[file:pipeline.png]]
+
+
+* How it works
+...
+
+* Setup
+Checkout git repo
+
+Set env vars
+
+#+begin_src sh
+chmod +x build.sh
+#+end_src
