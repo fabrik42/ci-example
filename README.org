@@ -1,27 +1,46 @@
+* Synopsis
+This repository is the home of a [[file:calculator.js][very simple calculator]] that can be used [[file:index.html][on a website]].
+
+It comes with a [[file:test.js][test suite]] functionality and a [[file:build.sh][build script]] that prepares the website for its deploy.
 * CI Pipelines by Example
 #+begin_src mermaid :file pipeline.png
 graph TD
-    S[Developer] -->|code change| A[Test suite]
-    A -->|all tests pass| B[Build]
+    S[Developer commits new code] -->|code change| A[Run test suite]
+    A -->|all tests pass| B[Build new release]
     A -->|tests fail| F(abort pipeline)
-    B -->|build dist version| C[Deploy]
+    B -->|build dist version| C[Release new version]
     B -->|build fails| F
-    C -->|deploy new version| D[New version online]
+    C -->|deploy to server| D[New version online]
     C -->|deploy fails| F
 #+end_src
 
 #+RESULTS:
 [[file:pipeline.png]]
+* Stages of this CI/CD Pipeline
+Everytime the developer pushes a code change (one or more commits) to the git repository, a pipeline will be kicked off.
 
+It contains multiple steps that will will run after each other.
 
-* How it works
-...
+** Stage 1: Test
+Make sure that the calculator is free of defect by verifying different assertions using an automated test suite.
+** Stage 2: Build
+Automatically build a new version of the calculator that is ready for distribution.
+** Stage 3: Release
+Deploy a newly built version to the server that hosts the calculator.
+* Files explained
+** =calculator.js=
+Contains the business logic for the calculator.
 
-* Setup
-Checkout git repo
+Right now, this is a simple function that adds two numbers and returns the sum.
+** =test.js=
+Represents the test suite for the calculator.
 
-Set env vars
-
-#+begin_src sh
-chmod +x build.sh
-#+end_src
+Multiple assertions ensure that the calculator is free of defects.
+** =index.html=
+Provides a user interface for the calculator in form of a website.
+** =build.sh=
+Builds a version of the calculator website that is ready for distribution and saves all necessary files in the =./dist= folder.
+** =.github/workflows/pipeline.yml=
+Defines the CI/CD pipeline of this repo in a GitHub actions compatible format.
+* Next steps
+To see the setup in action it might make sense to add another feature and/or fix a bug in the code.
