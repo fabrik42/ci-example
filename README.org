@@ -1,7 +1,7 @@
 * Synopsis
 This repository is the home of a [[file:calculator.js][very simple calculator]] that can be used [[file:index.html][on a website]].
 
-It comes with a [[file:test.js][test suite]] functionality and a [[file:build.sh][build script]] that prepares the website for its deploy.
+It comes with a [[file:test.js][test suite]] functionality and a [[file:build.sh][build script]] that prepares the website for [[https://ci-example.netlify.app][its deploy]].
 * CI Pipelines by Example
 #+begin_src mermaid :file pipeline.png
 graph TD
