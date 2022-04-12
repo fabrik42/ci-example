@@ -43,4 +43,5 @@ Builds a version of the calculator website that is ready for distribution and sa
 ** =.github/workflows/pipeline.yml=
 Defines the CI/CD pipeline of this repo in a GitHub actions compatible format.
 * Next steps
+
 To see the setup in action it might make sense to add another feature and/or fix a bug in the code.
