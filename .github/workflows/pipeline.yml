@@ -9,7 +9,7 @@ on:
 jobs:
   # ----- TEST STAGE -----
   test:
-    name: Run Calculator Tests
+    name: Run Calculator tests
     runs-on: ubuntu-latest
 
     steps:

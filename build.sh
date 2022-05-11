@@ -11,7 +11,7 @@ destination_directory = 'dist'
   FileUtils.cp(filename, destination_directory)
 end
 
-puts "Copied over all static assets!"
+puts "✅ Copied over all static assets"
 
 version_info = [
   DateTime.now.to_s,
@@ -22,4 +22,6 @@ content = File.read('index.html')
 content.gsub!('{{version_info}}', version_info)
 File.write("#{destination_directory}/index.html", content)
 
-puts "Built dist version of Calculator"
+puts "✅ Injected version info into index file"
+
+puts "✅ Built dist version `#{version_info}` of Calculator"
