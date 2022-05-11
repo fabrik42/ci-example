@@ -7,6 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
+  # ----- TEST STAGE -----
   test:
     name: Run Calculator Tests
     runs-on: ubuntu-latest
@@ -16,8 +17,9 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 12.x
-    - run: node test.js
+    - run: node test.js | tee $GITHUB_STEP_SUMMARY
 
+  # ----- BUILD STAGE -----
   build:
     name: Build new Calculator version
     needs: test
@@ -26,13 +28,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: chmod +x ./build.sh
-    - run: ./build.sh
+    - run: ./build.sh | tee $GITHUB_STEP_SUMMARY
     - uses: actions/upload-artifact@v3
       with:
         name: dist-build
         path: ./dist
         if-no-files-found: error
 
+  # ----- RELEASE STAGE -----
   release:
     name: Release the Calculator build
     needs: [test, build]
@@ -51,4 +54,4 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-        args: deploy --dir=dist --prod
+        args: deploy --dir=dist --prod | tee $GITHUB_STEP_SUMMARY
