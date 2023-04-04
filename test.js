@@ -22,7 +22,3 @@ assertEqual(add(-1, -2), -3);
 // -> design decision!
 assertEqual(add(1, null), 1);
 assertEqual(add(null, 1), 1);
-
-// does not work with non-decimal values
-// assertEqual(add(1, 'A'), NaN);
-// assertEqual(add('A', 1), NaN);
