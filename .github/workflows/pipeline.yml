@@ -29,8 +29,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: chmod +x ./build.sh
-    - run: ./build.sh | tee $GITHUB_STEP_SUMMARY
+    - run: |
+        chmod +x ./build.sh
+        ./build.sh | tee $GITHUB_STEP_SUMMARY
     - uses: actions/upload-artifact@v3
       with:
         name: dist-build
