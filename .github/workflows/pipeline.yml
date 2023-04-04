@@ -17,7 +17,9 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - run: node test.js
+    - run:
+        - set -o pipefail
+        - node test.js | tee $GITHUB_STEP_SUMMARY
 
   # ----- BUILD STAGE -----
   build:
