@@ -52,11 +52,7 @@ jobs:
         name: dist-build
         path: ./dist
     - name: Deploy to netlify
-      uses: netlify/actions/cli@master
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      with:
-        args: deploy --dir=dist --prod
-    - run: |
-        echo $NETLIFY_OUTPUT >> $GITHUB_STEP_SUMMARY
+      run: npx netlify-cli deploy --dir=dist --prod  | tee $GITHUB_STEP_SUMMARY
