@@ -33,7 +33,7 @@ jobs:
         chmod +x ./build.sh
         set -o pipefail
         ./build.sh | tee $GITHUB_STEP_SUMMARY
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: dist-build
         path: ./dist
